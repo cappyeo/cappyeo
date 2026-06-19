@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Generate WakaTime card
         run: python scripts/generate_wakatime_stats.py --username cappy --output assets/wakatime-stats.svg
