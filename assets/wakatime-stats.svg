@@ -9,6 +9,9 @@
 <rect x="0.5" y="0.5" width="719" height="156" rx="10" fill="#0d1117" stroke="#30363d"/>
 <text x="28" y="38" class="title">Weekly Coding Stats</text>
 <text x="28" y="59" class="sub">WakaTime language usage - last week</text>
-<text x="28" y="96" class="label">No public WakaTime language data available.</text>
+<text x="28" y="88" class="label">PowerShell</text>
+<rect x="190" y="77" width="440" height="12" rx="6" fill="#21262d"/>
+<rect x="190" y="77" width="440" height="12" rx="6" fill="#00d4ff"/>
+<text x="648" y="88" class="pct">100%</text>
 <text x="28" y="133" class="foot">Total coding time is private; public language split shown.</text>
 </svg>
