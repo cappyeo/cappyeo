@@ -9,13 +9,13 @@
 <rect x="0.5" y="0.5" width="719" height="185" rx="10" fill="#0d1117" stroke="#30363d"/>
 <text x="28" y="38" class="title">Weekly Coding Stats</text>
 <text x="28" y="59" class="sub">WakaTime language usage - last week</text>
-<text x="28" y="88" class="label">PowerShell</text>
+<text x="28" y="88" class="label">Markdown</text>
 <rect x="190" y="77" width="440" height="12" rx="6" fill="#21262d"/>
-<rect x="190" y="77" width="222.02" height="12" rx="6" fill="#00d4ff"/>
-<text x="648" y="88" class="pct">50.46%</text>
-<text x="28" y="117" class="label">Markdown</text>
+<rect x="190" y="77" width="296.96" height="12" rx="6" fill="#00d4ff"/>
+<text x="648" y="88" class="pct">67.49%</text>
+<text x="28" y="117" class="label">PowerShell</text>
 <rect x="190" y="106" width="440" height="12" rx="6" fill="#21262d"/>
-<rect x="190" y="106" width="217.98" height="12" rx="6" fill="#bb86fc"/>
-<text x="648" y="117" class="pct">49.54%</text>
+<rect x="190" y="106" width="143.04" height="12" rx="6" fill="#bb86fc"/>
+<text x="648" y="117" class="pct">32.51%</text>
 <text x="28" y="162" class="foot">Total coding time is private; public language split shown.</text>
 </svg>
