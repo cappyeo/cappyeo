@@ -36,14 +36,23 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A profile-3d-contrib/
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-          git commit -m "chore: update 3D contribution graph"
+          mkdir -p "$RUNNER_TEMP/profile-3d-contrib"
+          cp profile-3d-contrib/profile-night-green.svg "$RUNNER_TEMP/profile-3d-contrib/profile-night-green.svg"
+
           for i in 1 2 3; do
-            git pull --rebase origin main && git push && exit 0
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p profile-3d-contrib
+            cp "$RUNNER_TEMP/profile-3d-contrib/profile-night-green.svg" profile-3d-contrib/profile-night-green.svg
+            find profile-3d-contrib -type f -name '*.svg' ! -name 'profile-night-green.svg' -delete
+
+            git add -A profile-3d-contrib/
+            if git diff --cached --quiet; then
+              echo "No changes to commit"
+              exit 0
+            fi
+            git commit -m "chore: update 3D contribution graph"
+            git push origin HEAD:main && exit 0
             echo "Push attempt $i failed, retrying..."
             sleep 5
           done
