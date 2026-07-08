@@ -148,6 +148,14 @@ const cappy = {
 <br/>
 
 <p align="center">
+  <a href="https://github.com/cappylab">
+    <img src="./github-metrics.svg" alt="GitHub Metrics" />
+  </a>
+</p>
+
+<br/>
+
+<p align="center">
   <a href="https://wakatime.com/@cappy">
     <img src="./assets/wakatime-stats.svg" alt="Weekly Coding Stats" />
   </a>
