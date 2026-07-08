@@ -155,14 +155,6 @@ const cappy = {
 
 <br/>
 
-<p align="center">
-  <a href="https://wakatime.com/@cappy">
-    <img src="./assets/wakatime-stats.svg" alt="Weekly Coding Stats" />
-  </a>
-</p>
-
-<br/>
-
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- ░░░░░░░░░░░░░░░░░░ 3D CONTRIBUTION ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
@@ -203,7 +195,7 @@ const cappy = {
 </p>
 
 <p align="center">
-  <i>💬 Open to collaboration on Go backend, distributed systems, and developer tooling</i>
+  <i>💬 "When something is important enough, you do it even if the odds are not in your favor." — Elon Musk</i>
 </p>
 
 <p align="center">
