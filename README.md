@@ -106,6 +106,48 @@ const cappy = {
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- ░░░░░░░░░░░░░░░░░░░░ GITHUB STATS ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<p align="center">
+  <img src="./assets/cats/header-stats.svg" width="700" alt="GitHub Analytics" />
+</p>
+
+<table align="center">
+  <tr>
+    <td>
+      <a href="https://github.com/cappylab">
+        <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=cappylab&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=bb86fc&text_color=c9d1d9&ring_color=00d4ff&count_private=true&include_all_commits=true&card_width=420" alt="GitHub Stats" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/cappylab">
+        <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=cappylab&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=c9d1d9&langs_count=8&card_width=320" alt="Top Languages" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+<br/>
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://github.com/cappylab">
+        <img src="https://github-readme-streak-stats-eight-liard.vercel.app/?user=cappylab&theme=tokyonight&hide_border=true&background=0d1117&stroke=bb86fc&ring=00d4ff&fire=ff6b6b&currStreakLabel=00d4ff&sideLabels=bb86fc&currStreakNum=c9d1d9&sideNums=c9d1d9&dates=8b949e&date_format=j%20M" alt="GitHub Streak" />
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <a href="https://github.com/cappylab">
+        <img src="https://github-readme-activity-graph.vercel.app/graph?username=cappylab&bg_color=0d1117&color=00d4ff&line=bb86fc&point=ff6b6b&area=true&area_color=00d4ff&hide_border=true&custom_title=Contribution%20Activity&radius=12&height=300" alt="Activity Graph" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+<br/>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- ░░░░░░░░░░░░░░░░░░ 3D CONTRIBUTION ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
