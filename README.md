@@ -117,12 +117,12 @@ const cappy = {
   <tr>
     <td>
       <a href="https://github.com/cappylab">
-        <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=cappylab&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=bb86fc&text_color=c9d1d9&ring_color=00d4ff&count_private=true&include_all_commits=true&card_width=420" alt="GitHub Stats" />
+        <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=cappylab&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=bb86fc&text_color=c9d1d9&ring_color=00d4ff&count_private=true&include_all_commits=true&card_width=420&cache_seconds=14400" alt="GitHub Stats" />
       </a>
     </td>
     <td>
       <a href="https://github.com/cappylab">
-        <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=cappylab&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=c9d1d9&langs_count=8&card_width=320" alt="Top Languages" />
+        <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=cappylab&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=c9d1d9&langs_count=8&card_width=320&cache_seconds=14400" alt="Top Languages" />
       </a>
     </td>
   </tr>
