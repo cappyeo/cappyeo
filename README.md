@@ -134,7 +134,7 @@ const cappy = {
   <tr>
     <td align="center" width="50%">
       <a href="https://github.com/cappylab">
-        <img src="https://github-readme-streak-stats-eight-liard.vercel.app/?user=cappylab&theme=tokyonight&hide_border=true&background=0d1117&stroke=bb86fc&ring=00d4ff&fire=ff6b6b&currStreakLabel=00d4ff&sideLabels=bb86fc&currStreakNum=c9d1d9&sideNums=c9d1d9&dates=8b949e&date_format=j%20M" alt="GitHub Streak" />
+        <img src="https://github-readme-streak-stats-eight-liard.vercel.app/?user=cappylab&theme=tokyonight&hide_border=true&background=0d1117&stroke=bb86fc&ring=00d4ff&fire=ff6b6b&currStreakLabel=00d4ff&sideLabels=bb86fc&currStreakNum=c9d1d9&sideNums=c9d1d9&dates=8b949e&date_format=j%20M&cache_bust=1" alt="GitHub Streak" />
       </a>
     </td>
     <td align="center" width="50%">
