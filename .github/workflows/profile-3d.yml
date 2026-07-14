@@ -25,7 +25,9 @@ jobs:
       - name: Generate 3D Contribution
         uses: yoshi389111/github-profile-3d-contrib@v0.9.3
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # A personal token lets the generator read this account's private contribution calendar.
+          # The default workflow token only receives the public calendar.
+          GITHUB_TOKEN: ${{ secrets.METRICS_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
       - name: Keep only used SVG
