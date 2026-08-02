@@ -39,6 +39,38 @@ jobs:
             echo "PROFILE_TOKEN=$DEFAULT_TOKEN" >> "$GITHUB_ENV"
           fi
 
+      - name: Diagnose contribution data
+        env:
+          PROFILE_TOKEN: ${{ env.PROFILE_TOKEN }}
+          TARGET_USERNAME: ${{ github.repository_owner }}
+        run: |
+          query='query($login: String!) { viewer { login } user(login: $login) { login contributionsCollection { contributionCalendar { totalContributions } } } }'
+          payload=$(jq -nc --arg query "$query" --arg login "$TARGET_USERNAME" '{query: $query, variables: {login: $login}}')
+
+          if ! response=$(curl --fail --silent --show-error \
+            --header "Authorization: Bearer $PROFILE_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --header "Content-Type: application/json" \
+            --data "$payload" \
+            https://api.github.com/graphql); then
+            echo "::warning::Unable to query contribution diagnostics."
+            exit 0
+          fi
+
+          token_owner=$(jq -r '.data.viewer.login // empty' <<< "$response")
+          target_owner=$(jq -r '.data.user.login // empty' <<< "$response")
+          total=$(jq -r '.data.user.contributionsCollection.contributionCalendar.totalContributions // empty' <<< "$response")
+
+          if [ -z "$token_owner" ] || [ -z "$target_owner" ] || [ -z "$total" ]; then
+            echo "::warning::GitHub did not return complete contribution diagnostics."
+            exit 0
+          fi
+
+          echo "Contribution diagnostics: token owner=$token_owner; target=$target_owner; total=$total"
+          if [ "$token_owner" != "$TARGET_USERNAME" ]; then
+            echo "::warning::METRICS_TOKEN belongs to $token_owner, not $TARGET_USERNAME."
+          fi
+
       - name: Generate 3D Contribution
         uses: yoshi389111/github-profile-3d-contrib@v0.9.3
         env:
