@@ -28,35 +28,48 @@ jobs:
       - name: Select contribution token
         env:
           METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
-          DEFAULT_TOKEN: ${{ github.token }}
+          TARGET_USERNAME: ${{ github.repository_owner }}
         run: |
-          if [ -n "$METRICS_TOKEN" ] && curl --fail --silent --show-error \
-            --retry 2 \
-            --header "Authorization: Bearer $METRICS_TOKEN" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/user >/dev/null; then
+          token_profile=''
+          if [ -n "$METRICS_TOKEN" ]; then
+            token_profile="$(curl --fail --silent --show-error \
+              --retry 2 \
+              --header "Authorization: Bearer $METRICS_TOKEN" \
+              --header "X-GitHub-Api-Version: 2022-11-28" \
+              https://api.github.com/user || true)"
+          fi
+          token_owner="$(jq -r '.login // empty' <<< "$token_profile" 2>/dev/null || true)"
+
+          if [ "$token_owner" = "$TARGET_USERNAME" ]; then
             echo "PROFILE_TOKEN=$METRICS_TOKEN" >> "$GITHUB_ENV"
+            echo "CONTRIBUTION_TOKEN_MODE=private" >> "$GITHUB_ENV"
             echo "Using METRICS_TOKEN for the private contribution calendar."
           else
-            echo "::warning::METRICS_TOKEN is missing or invalid; generating the public contribution calendar with the default Actions token."
-            echo "PROFILE_TOKEN=$DEFAULT_TOKEN" >> "$GITHUB_ENV"
+            echo "CONTRIBUTION_TOKEN_MODE=preserve" >> "$GITHUB_ENV"
+            echo "::warning::METRICS_TOKEN is missing, invalid, or belongs to a different account; preserving the last known-good 3D graph."
           fi
 
       - name: Generate 3D Contribution
+        if: env.CONTRIBUTION_TOKEN_MODE == 'private'
         uses: yoshi389111/github-profile-3d-contrib@v0.9.3
         env:
-          # A valid personal token includes private contributions; the workflow
-          # falls back to the default token when it is unavailable or invalid.
+          # A verified owner token is required to include private contributions.
           GITHUB_TOKEN: ${{ env.PROFILE_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
       - name: Keep only used SVG
+        if: env.CONTRIBUTION_TOKEN_MODE == 'private'
         run: |
           find profile-3d-contrib -type f -name '*.svg' ! -name 'profile-night-green.svg' -delete
 
       - name: Protect the last known-good contribution graph
         run: |
           set -euo pipefail
+
+          if [ "$CONTRIBUTION_TOKEN_MODE" != 'private' ]; then
+            echo "::warning::Skipped 3D graph refresh because no verified owner token is available."
+            exit 0
+          fi
 
           graph_path='profile-3d-contrib/profile-night-green.svg'
           extract_total() {
@@ -102,6 +115,11 @@ jobs:
 
       - name: Commit & Push
         run: |
+          if [ "$CONTRIBUTION_TOKEN_MODE" != 'private' ]; then
+            echo "No 3D graph update to commit."
+            exit 0
+          fi
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           mkdir -p "$RUNNER_TEMP/profile-3d-contrib"
