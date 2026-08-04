@@ -117,12 +117,12 @@ const cappy = {
   <tr>
     <td>
       <a href="https://github.com/cappyeo">
-        <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=cappyeo&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=bb86fc&text_color=c9d1d9&ring_color=00d4ff&count_private=true&include_all_commits=true&card_width=420&cache_seconds=14400" alt="GitHub Stats" />
+        <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=cappyeo&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=bb86fc&text_color=c9d1d9&ring_color=00d4ff&count_private=true&include_all_commits=true&card_width=420&cache_seconds=3600&v=profile-public" alt="GitHub Stats" />
       </a>
     </td>
     <td>
       <a href="https://github.com/cappyeo">
-        <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=cappyeo&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=c9d1d9&langs_count=8&card_width=320&cache_seconds=14400" alt="Top Languages" />
+        <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=cappyeo&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=c9d1d9&langs_count=8&card_width=320&cache_seconds=3600&v=profile-public" alt="Top Languages" />
       </a>
     </td>
   </tr>
@@ -134,12 +134,12 @@ const cappy = {
   <tr>
     <td align="center" width="50%">
       <a href="https://github.com/cappyeo">
-        <img src="https://streak-stats.demolab.com?user=cappyeo&theme=tokyonight&hide_border=true&background=0d1117&stroke=bb86fc&ring=00d4ff&fire=ff6b6b&currStreakLabel=00d4ff&sideLabels=bb86fc&currStreakNum=c9d1d9&sideNums=c9d1d9&dates=8b949e&date_format=j%20M" alt="GitHub Streak" />
+        <img src="https://streak-stats.demolab.com?user=cappyeo&theme=tokyonight&hide_border=true&background=0d1117&stroke=bb86fc&ring=00d4ff&fire=ff6b6b&currStreakLabel=00d4ff&sideLabels=bb86fc&currStreakNum=c9d1d9&sideNums=c9d1d9&dates=8b949e&date_format=j%20M&v=profile-public" alt="GitHub Streak" />
       </a>
     </td>
     <td align="center" width="50%">
       <a href="https://github.com/cappyeo">
-        <img src="https://github-readme-activity-graph.vercel.app/graph?username=cappyeo&bg_color=0d1117&color=00d4ff&line=bb86fc&point=ff6b6b&area=true&area_color=00d4ff&hide_border=true&custom_title=Contribution%20Activity&radius=12&height=300" alt="Activity Graph" />
+        <img src="https://github-readme-activity-graph.vercel.app/graph?username=cappyeo&bg_color=0d1117&color=00d4ff&line=bb86fc&point=ff6b6b&area=true&area_color=00d4ff&hide_border=true&custom_title=Contribution%20Activity&radius=12&height=300&v=profile-public" alt="Activity Graph" />
       </a>
     </td>
   </tr>
