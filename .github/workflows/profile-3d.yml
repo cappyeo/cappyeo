@@ -21,6 +21,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          # The quality gate searches history for the last non-empty graph.
+          fetch-depth: 0
 
       - name: Select contribution token
         env:
@@ -39,38 +42,6 @@ jobs:
             echo "PROFILE_TOKEN=$DEFAULT_TOKEN" >> "$GITHUB_ENV"
           fi
 
-      - name: Diagnose contribution data
-        env:
-          PROFILE_TOKEN: ${{ env.PROFILE_TOKEN }}
-          TARGET_USERNAME: ${{ github.repository_owner }}
-        run: |
-          query='query($login: String!) { viewer { login } user(login: $login) { login contributionsCollection { contributionCalendar { totalContributions } } } }'
-          payload=$(jq -nc --arg query "$query" --arg login "$TARGET_USERNAME" '{query: $query, variables: {login: $login}}')
-
-          if ! response=$(curl --fail --silent --show-error \
-            --header "Authorization: Bearer $PROFILE_TOKEN" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            --header "Content-Type: application/json" \
-            --data "$payload" \
-            https://api.github.com/graphql); then
-            echo "::warning::Unable to query contribution diagnostics."
-            exit 0
-          fi
-
-          token_owner=$(jq -r '.data.viewer.login // empty' <<< "$response")
-          target_owner=$(jq -r '.data.user.login // empty' <<< "$response")
-          total=$(jq -r '.data.user.contributionsCollection.contributionCalendar.totalContributions // empty' <<< "$response")
-
-          if [ -z "$token_owner" ] || [ -z "$target_owner" ] || [ -z "$total" ]; then
-            echo "::warning::GitHub did not return complete contribution diagnostics."
-            exit 0
-          fi
-
-          echo "Contribution diagnostics: token owner=$token_owner; target=$target_owner; total=$total"
-          if [ "$token_owner" != "$TARGET_USERNAME" ]; then
-            echo "::warning::METRICS_TOKEN belongs to $token_owner, not $TARGET_USERNAME."
-          fi
-
       - name: Generate 3D Contribution
         uses: yoshi389111/github-profile-3d-contrib@v0.9.3
         env:
@@ -82,6 +53,98 @@ jobs:
       - name: Keep only used SVG
         run: |
           find profile-3d-contrib -type f -name '*.svg' ! -name 'profile-night-green.svg' -delete
+
+      - name: Protect the last known-good contribution graph
+        run: |
+          set -euo pipefail
+
+          graph_path='profile-3d-contrib/profile-night-green.svg'
+          extract_total() {
+            grep -oP 'class="fill-strong">\K[0-9]+(?=</text><text[^>]*>contributions</text>)' "$1" | head -n 1
+          }
+
+          generated_total="$(extract_total "$graph_path" || true)"
+          if ! [[ "$generated_total" =~ ^[0-9]+$ ]]; then
+            echo "::error::The generated graph has no readable contribution total."
+            exit 1
+          fi
+
+          if [ "$generated_total" -gt 0 ]; then
+            echo "CONTRIBUTION_TOTAL=$generated_total" >> "$GITHUB_ENV"
+            echo "CONTRIBUTION_STATUS=live" >> "$GITHUB_ENV"
+            echo "Generated a live graph with $generated_total contributions."
+            exit 0
+          fi
+
+          candidate="$RUNNER_TEMP/last-known-good-contribution-graph.svg"
+          last_good_ref=''
+          while read -r ref; do
+            if ! git show "$ref:$graph_path" > "$candidate" 2>/dev/null; then
+              continue
+            fi
+
+            candidate_total="$(extract_total "$candidate" || true)"
+            if [[ "$candidate_total" =~ ^[1-9][0-9]*$ ]]; then
+              last_good_ref="$ref"
+              break
+            fi
+          done < <(git log --format=%H -- "$graph_path")
+
+          if [ -z "$last_good_ref" ]; then
+            echo "::error::GitHub returned zero contributions and no non-empty graph exists to preserve."
+            exit 1
+          fi
+
+          cp "$candidate" "$graph_path"
+          echo "CONTRIBUTION_TOTAL=$candidate_total" >> "$GITHUB_ENV"
+          echo "CONTRIBUTION_STATUS=last-known-good" >> "$GITHUB_ENV"
+          echo "::warning::GitHub returned zero contributions; preserving graph from $last_good_ref with $candidate_total contributions."
+
+      - name: Generate static analytics overview
+        env:
+          PROFILE_TOKEN: ${{ env.PROFILE_TOKEN }}
+          TARGET_USERNAME: ${{ github.repository_owner }}
+        run: |
+          set -euo pipefail
+
+          profile=$(curl --fail --silent --show-error \
+            --header "Authorization: Bearer $PROFILE_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/users/$TARGET_USERNAME")
+          followers=$(jq -r '.followers // 0' <<< "$profile")
+          public_repos=$(jq -r '.public_repos // 0' <<< "$profile")
+          updated_at=$(date -u +%Y-%m-%d)
+
+          if [ "$CONTRIBUTION_STATUS" = 'live' ]; then
+            contribution_label='Current contribution total'
+          else
+            contribution_label='Last known valid contribution total'
+          fi
+
+          mkdir -p assets/analytics
+          cat > assets/analytics/github-overview.svg <<EOF
+          <svg xmlns="http://www.w3.org/2000/svg" width="700" height="220" viewBox="0 0 700 220" role="img" aria-labelledby="title description">
+            <title id="title">GitHub analytics for $TARGET_USERNAME</title>
+            <desc id="description">$contribution_label: $CONTRIBUTION_TOTAL. Public repositories: $public_repos. Followers: $followers.</desc>
+            <defs>
+              <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#0d1117"/>
+                <stop offset="1" stop-color="#161b22"/>
+              </linearGradient>
+            </defs>
+            <rect width="700" height="220" rx="18" fill="url(#background)"/>
+            <rect x="1" y="1" width="698" height="218" rx="17" fill="none" stroke="#30363d"/>
+            <text x="42" y="52" fill="#f0f6fc" font-family="Segoe UI, Ubuntu, sans-serif" font-size="22" font-weight="700">GITHUB ANALYTICS</text>
+            <text x="42" y="80" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14">$TARGET_USERNAME · updated $updated_at</text>
+            <line x1="42" y1="103" x2="658" y2="103" stroke="#30363d"/>
+            <text x="42" y="139" fill="#00d4ff" font-family="Segoe UI, Ubuntu, sans-serif" font-size="32" font-weight="700">$CONTRIBUTION_TOTAL</text>
+            <text x="42" y="164" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="13">$contribution_label</text>
+            <text x="398" y="139" fill="#bb86fc" font-family="Segoe UI, Ubuntu, sans-serif" font-size="32" font-weight="700">$public_repos</text>
+            <text x="398" y="164" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="13">public repositories</text>
+            <text x="570" y="139" fill="#ff6b6b" font-family="Segoe UI, Ubuntu, sans-serif" font-size="32" font-weight="700">$followers</text>
+            <text x="570" y="164" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="13">followers</text>
+          </svg>
+          EOF
 
       - name: Commit & Push
         run: |
@@ -97,7 +160,7 @@ jobs:
             cp "$RUNNER_TEMP/profile-3d-contrib/profile-night-green.svg" profile-3d-contrib/profile-night-green.svg
             find profile-3d-contrib -type f -name '*.svg' ! -name 'profile-night-green.svg' -delete
 
-            git add -A profile-3d-contrib/
+            git add -A profile-3d-contrib/ assets/analytics/
             if git diff --cached --quiet; then
               echo "No changes to commit"
               exit 0
