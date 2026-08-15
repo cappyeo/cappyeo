@@ -30,28 +30,89 @@ jobs:
           METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
           TARGET_USERNAME: ${{ github.repository_owner }}
         run: |
-          token_profile=''
+          set -euo pipefail
+
+          contribution_data=''
           if [ -n "$METRICS_TOKEN" ]; then
-            token_profile="$(curl --fail --silent --show-error \
+            query='query { viewer { login contributionsCollection { contributionCalendar { totalContributions } restrictedContributionsCount } } }'
+            payload="$(jq -nc --arg query "$query" '{query: $query}')"
+            contribution_data="$(curl --fail --silent --show-error \
               --retry 2 \
               --header "Authorization: Bearer $METRICS_TOKEN" \
               --header "X-GitHub-Api-Version: 2022-11-28" \
-              https://api.github.com/user || true)"
+              --header "Content-Type: application/json" \
+              --data "$payload" \
+              https://api.github.com/graphql || true)"
           fi
-          token_owner="$(jq -r '.login // empty' <<< "$token_profile" 2>/dev/null || true)"
+          token_owner="$(jq -r '.data.viewer.login // empty' <<< "$contribution_data" 2>/dev/null || true)"
+          profile_total="$(jq -r '.data.viewer.contributionsCollection.contributionCalendar.totalContributions // empty' <<< "$contribution_data" 2>/dev/null || true)"
+          restricted_total="$(jq -r '.data.viewer.contributionsCollection.restrictedContributionsCount // empty' <<< "$contribution_data" 2>/dev/null || true)"
 
-          if [ "$token_owner" = "$TARGET_USERNAME" ]; then
+          if [ "$token_owner" = "$TARGET_USERNAME" ] \
+            && [[ "$profile_total" =~ ^[1-9][0-9]*$ ]] \
+            && [[ "$restricted_total" =~ ^[1-9][0-9]*$ ]]; then
             echo "PROFILE_TOKEN=$METRICS_TOKEN" >> "$GITHUB_ENV"
+            echo "PROFILE_API_TOTAL=$profile_total" >> "$GITHUB_ENV"
             echo "CONTRIBUTION_TOKEN_MODE=private" >> "$GITHUB_ENV"
-            echo "Using METRICS_TOKEN for the private contribution calendar."
+            echo "Using METRICS_TOKEN for $profile_total contributions, including $restricted_total private contributions."
           else
             echo "CONTRIBUTION_TOKEN_MODE=preserve" >> "$GITHUB_ENV"
-            echo "::warning::METRICS_TOKEN is missing, invalid, or belongs to a different account; preserving the last known-good 3D graph."
+            echo "::warning::METRICS_TOKEN cannot prove access to $TARGET_USERNAME's private contribution calendar; preserving the last known-good profile assets."
           fi
+
+      - name: Generate GitHub stats card
+        if: env.CONTRIBUTION_TOKEN_MODE == 'private'
+        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=bb86fc&text_color=c9d1d9&ring_color=00d4ff&count_private=true&include_all_commits=true&card_width=420
+          path: assets/analytics/github-stats.svg
+          token: ${{ env.PROFILE_TOKEN }}
+          fail_on_error: true
+
+      - name: Generate top languages card
+        if: env.CONTRIBUTION_TOKEN_MODE == 'private'
+        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=c9d1d9&langs_count=8&card_width=320
+          path: assets/analytics/top-languages.svg
+          token: ${{ env.PROFILE_TOKEN }}
+          fail_on_error: true
+
+      - name: Generate streak card
+        if: env.CONTRIBUTION_TOKEN_MODE == 'private'
+        uses: DenverCoder1/github-readme-streak-stats@51cfb8879073b4c016ce6286016de0b14d179077 # v1.7.0
+        with:
+          options: user=${{ github.repository_owner }}&theme=tokyonight&hide_border=true&background=0d1117&stroke=bb86fc&ring=00d4ff&fire=ff6b6b&currStreakLabel=00d4ff&sideLabels=bb86fc&currStreakNum=c9d1d9&sideNums=c9d1d9&dates=8b949e&date_format=j%20M&timezone=Asia/Seoul
+          path: assets/analytics/github-streak.svg
+          token: ${{ env.PROFILE_TOKEN }}
+
+      - name: Validate analytics cards
+        if: env.CONTRIBUTION_TOKEN_MODE == 'private'
+        run: |
+          set -euo pipefail
+
+          cards=(
+            assets/analytics/github-stats.svg
+            assets/analytics/top-languages.svg
+            assets/analytics/github-streak.svg
+          )
+          for card in "${cards[@]}"; do
+            test -s "$card"
+            grep -q '<svg' "$card"
+            if grep -Eiq 'Something went wrong|Failed to retrieve|Maximum retries|Deprecated:|Warning: Cannot modify header|>Error<' "$card"; then
+              echo "::error::$card contains an error response."
+              exit 1
+            fi
+          done
+
+          grep -q 'data-testid="commits"' assets/analytics/github-stats.svg
+          grep -q 'mask_out_ring_behind_fire' assets/analytics/github-streak.svg
 
       - name: Generate 3D Contribution
         if: env.CONTRIBUTION_TOKEN_MODE == 'private'
-        uses: yoshi389111/github-profile-3d-contrib@v0.9.3
+        uses: yoshi389111/github-profile-3d-contrib@7d95e7d4cdc028dd1e1cbd957d65f35efb12ae39 # v0.9.3
         env:
           # A verified owner token is required to include private contributions.
           GITHUB_TOKEN: ${{ env.PROFILE_TOKEN }}
@@ -82,10 +143,12 @@ jobs:
             exit 1
           fi
 
-          if [ "$generated_total" -gt 0 ]; then
+          minimum_total=$((PROFILE_API_TOTAL * 70 / 100))
+          maximum_total=$((PROFILE_API_TOTAL * 130 / 100))
+          if [ "$generated_total" -ge "$minimum_total" ] && [ "$generated_total" -le "$maximum_total" ]; then
             echo "CONTRIBUTION_TOTAL=$generated_total" >> "$GITHUB_ENV"
             echo "CONTRIBUTION_STATUS=live" >> "$GITHUB_ENV"
-            echo "Generated a live graph with $generated_total contributions."
+            echo "Generated a live graph with $generated_total contributions (API reference: $PROFILE_API_TOTAL)."
             exit 0
           fi
 
@@ -97,7 +160,9 @@ jobs:
             fi
 
             candidate_total="$(extract_total "$candidate" || true)"
-            if [[ "$candidate_total" =~ ^[1-9][0-9]*$ ]]; then
+            if [[ "$candidate_total" =~ ^[1-9][0-9]*$ ]] \
+              && [ "$candidate_total" -ge "$minimum_total" ] \
+              && [ "$candidate_total" -le "$maximum_total" ]; then
               last_good_ref="$ref"
               break
             fi
@@ -111,7 +176,7 @@ jobs:
           cp "$candidate" "$graph_path"
           echo "CONTRIBUTION_TOTAL=$candidate_total" >> "$GITHUB_ENV"
           echo "CONTRIBUTION_STATUS=last-known-good" >> "$GITHUB_ENV"
-          echo "::warning::GitHub returned zero contributions; preserving graph from $last_good_ref with $candidate_total contributions."
+          echo "::warning::Generated total $generated_total is outside the safe range $minimum_total-$maximum_total; preserving graph from $last_good_ref with $candidate_total contributions."
 
       - name: Commit & Push
         run: |
@@ -123,16 +188,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           mkdir -p "$RUNNER_TEMP/profile-3d-contrib"
+          mkdir -p "$RUNNER_TEMP/assets/analytics"
           cp profile-3d-contrib/profile-night-green.svg "$RUNNER_TEMP/profile-3d-contrib/profile-night-green.svg"
+          cp assets/analytics/*.svg "$RUNNER_TEMP/assets/analytics/"
 
           for i in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
             mkdir -p profile-3d-contrib
+            mkdir -p assets/analytics
             cp "$RUNNER_TEMP/profile-3d-contrib/profile-night-green.svg" profile-3d-contrib/profile-night-green.svg
+            cp "$RUNNER_TEMP"/assets/analytics/*.svg assets/analytics/
             find profile-3d-contrib -type f -name '*.svg' ! -name 'profile-night-green.svg' -delete
 
-            git add -A profile-3d-contrib/
+            git add -A profile-3d-contrib/ assets/analytics/
             if git diff --cached --quiet; then
               echo "No changes to commit"
               exit 0
