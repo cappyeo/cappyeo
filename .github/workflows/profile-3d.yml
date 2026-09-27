@@ -82,7 +82,7 @@ jobs:
 
       - name: Generate streak card
         if: env.CONTRIBUTION_TOKEN_MODE == 'private'
-        uses: DenverCoder1/github-readme-streak-stats@51cfb8879073b4c016ce6286016de0b14d179077 # v1.7.0
+        uses: DenverCoder1/github-readme-streak-stats@d855de1a23fe45bdda5ffbc28a6d4b80b0f107e1 # v1.8.0
         with:
           options: user=${{ github.repository_owner }}&theme=tokyonight&hide_border=true&background=0d1117&stroke=bb86fc&ring=00d4ff&fire=ff6b6b&currStreakLabel=00d4ff&sideLabels=bb86fc&currStreakNum=c9d1d9&sideNums=c9d1d9&dates=8b949e&date_format=j%20M&timezone=Asia/Seoul
           path: assets/analytics/github-streak.svg
