@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewBox="0 0 480 240" role="img" aria-labelledby="title desc">
   <title id="title">A cozy coding session</title>
-  <desc id="desc">A ginger kitten sits behind a laptop with two short paws on the keyboard. A small terminal window, coffee and plant complete the desk.</desc>
+  <desc id="desc">A ginger kitten sits to the left of an open laptop, tapping two paws on its visible angled keyboard. The upright screen is clear of both paws. Coffee and a plant complete the desk.</desc>
   <style>
     @keyframes blink { 0%,42%,46%,100% { transform:scaleY(1) } 44% { transform:scaleY(.08) } }
     .blink { animation:blink 6s linear infinite; transform-box:fill-box; transform-origin:center }
 
-    @keyframes typing { 0%,18%,40%,100% { transform:translateY(0) } 9%,29% { transform:translateY(2px) } }
+    @keyframes typing { 0%,18%,40%,100% { transform:rotate(0) } 9%,29% { transform:rotate(-2deg) } }
     @keyframes steam { 0% { opacity:0; transform:translateY(3px) } 30% { opacity:.6 } 100% { opacity:0; transform:translate(3px,-10px) } }
     @keyframes code { 0%,20% { stroke-dashoffset:58 } 55%,85% { stroke-dashoffset:0 } 100% { stroke-dashoffset:58 } }
-    .typing { animation:typing 3s ease-in-out infinite }
-    .second { animation-delay:-.22s }
+    .typing { animation:typing 3s ease-in-out infinite; transform-origin:218px 145px }
+    .second { animation-delay:-.22s; transform-origin:202px 146px }
     .steam { animation:steam 4s ease-out infinite }
     .code { stroke-dasharray:58; animation:code 5s ease-in-out infinite }
 
@@ -18,11 +18,13 @@
 
     <ellipse cx="239" cy="212" rx="199" ry="8" fill="#77849e" opacity=".12"/>
     <path d="M47 211H434" stroke="#76819a" stroke-width="2" stroke-linecap="round"/>
-    <!-- The head, shoulders and short forelegs stay connected behind the laptop. -->
-    <path d="M210 106Q199 132 205 177H275Q281 132 270 106Z" fill="#f4c58e" stroke="#65505a" stroke-width="3"/>
-    <path d="M212 130Q196 133 190 147M268 130Q284 133 290 147" fill="none" stroke="#65505a" stroke-width="19" stroke-linecap="round"/>
-    <path d="M212 130Q196 133 190 147M268 130Q284 133 290 147" fill="none" stroke="#f4c58e" stroke-width="13" stroke-linecap="round"/>
-    <g transform="translate(240 100)">
+    <!-- The seated body and tail sit behind the keyboard, with the head joined at the shoulders. -->
+    <path d="M182 192C155 202 143 187 151 176Q156 170 160 175" fill="none" stroke="#65505a" stroke-width="14" stroke-linecap="round"/>
+    <path d="M182 192C155 202 143 187 151 176Q156 170 160 175" fill="none" stroke="#e9ad76" stroke-width="8" stroke-linecap="round"/>
+    <path d="M183 122C168 143 168 177 175 192Q179 202 198 202H226Q240 187 235 164L224 122Z" fill="#f4c58e" stroke="#65505a" stroke-width="3"/>
+    <path d="M193 141Q184 163 189 185Q196 197 213 191L224 174 218 142Z" fill="#fff0d7"/>
+    <path d="M179 199Q177 187 188 185Q203 184 210 198" fill="#f4c58e" stroke="#65505a" stroke-width="2.5" stroke-linecap="round"/>
+    <g transform="translate(200 114)">
       <path d="M-42-15Q-47-29-40-47L-34-66Q-32-71-28-67L-11-54Q0-57 11-54L28-67Q32-71 34-66L40-47Q47-29 42-15Q38 16 0 20Q-38 16-42-15Z" fill="#f4c58e" stroke="#65505a" stroke-width="3" stroke-linejoin="round"/>
       <path d="m-35-46 5-15 12 13q-10-2-17 2m53-2 12-13 5 15q-7-4-17-2" fill="#eeb0a0"/>
       <path d="m-14-48 3 8M0-51v10m14-7-3 8" fill="none" stroke="#d99a67" stroke-width="3.5" stroke-linecap="round"/>
@@ -33,20 +35,32 @@
       <path d="M0-2v3m0 0q-3 5-7 1m7-1q3 5 7 1" fill="none" stroke="#74555b" stroke-width="1.8" stroke-linecap="round"/>
       <path d="m-31-9-13-3m13 10-12 1m75-8 12-3m-12 10 12 1" fill="none" stroke="#96727a" stroke-width="1.5" stroke-linecap="round"/>
     </g>
-    <!-- The viewer sees the back of the laptop lid; code appears in a separate terminal. -->
-    <path d="M181 134H299Q304 134 305 140L317 193Q318 198 312 198H168Q162 198 163 193L175 140Q176 134 181 134Z" fill="#2d3850" stroke="#8090af" stroke-width="3"/>
-    <path d="M184 140H296" stroke="#b1c0d7" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
-    <path d="m232 159-10 9 10 9m16-18 10 9-10 9" fill="none" stroke="#99dbe9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="154" y="197" width="172" height="8" rx="4" fill="#9eabc1" stroke="#596780" stroke-width="2"/>
-    <path d="M226 201h28" stroke="#65748e" stroke-width="2" stroke-linecap="round"/>
-    <g class="typing"><ellipse cx="190" cy="145" rx="10" ry="7" fill="#f4c58e" stroke="#65505a" stroke-width="2.5"/><path d="M187 142v4m5-4v4" stroke="#cf946d" stroke-width="1.3" stroke-linecap="round"/></g>
-    <g class="typing second"><ellipse cx="290" cy="145" rx="10" ry="7" fill="#f4c58e" stroke="#65505a" stroke-width="2.5"/><path d="M287 142v4m5-4v4" stroke="#cf946d" stroke-width="1.3" stroke-linecap="round"/></g>
-    <!-- A small, separate terminal keeps the character's face uncluttered. -->
-    <rect x="341" y="49" width="94" height="66" rx="9" fill="#192333" stroke="#576783" stroke-width="1.5"/>
-    <path d="M341 66h94" stroke="#394a65"/><circle cx="352" cy="58" r="2" fill="#e7ac9d"/><circle cx="359" cy="58" r="2" fill="#e6d098"/><circle cx="366" cy="58" r="2" fill="#94c6af"/>
-    <path d="m352 77 4 3-4 3m12-3h18M353 92h21" fill="none" stroke="#93d6df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path class="code" d="M380 92h38m-55 10h44" fill="none" stroke="#bea7e9" stroke-width="2" stroke-linecap="round"/>
-    <path d="M374 115v16q0 5-5 5h-31" fill="none" stroke="#596b88" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <!-- Two separate laptop planes share the hinge (266,180)-(350,196). -->
+    <g id="laptop-screen">
+      <path d="m266 180 10-69q.5-4 5-3l77 15q4 1 3 6l-11 67Z" fill="#2d3850" stroke="#8090af" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="m274 175 8-59 71 14-9 57Z" fill="#192333"/>
+      <path d="m282 126 68 13" stroke="#394a65" stroke-width="1.5"/>
+      <circle cx="286" cy="122" r="1.5" fill="#e7ac9d"/><circle cx="291" cy="123" r="1.5" fill="#e6d098"/><circle cx="296" cy="124" r="1.5" fill="#94c6af"/>
+      <path d="m284 137 4 4-5 2m13-3 17 3m-32 6 22 4" fill="none" stroke="#93d6df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="code" d="m310 155 26 5m-55-2 41 8m-30 5 20 4" fill="none" stroke="#bea7e9" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g id="laptop-keyboard">
+      <path d="m210 197 56-17 84 16v5l-56 17-84-16Z" fill="#72829e" stroke="#596780" stroke-width="2" stroke-linejoin="round"/>
+      <path d="m210 197 56-17 84 16-56 17Z" fill="#bac5d7" stroke="#8090af" stroke-width="2" stroke-linejoin="round"/>
+      <!-- Key rows follow the same perspective as the deck. -->
+      <path d="m237 192 30-9 69 13-30 9Z" fill="#65748e"/>
+      <path d="m247 189 69 13m-59-16 69 13m-60-12-23 7m36-4-23 7m36-5-23 7m36-4-23 7m36-5-23 7" fill="none" stroke="#b1bfd3" stroke-width="1.3"/>
+      <path d="m254 203 12-4 24 5-12 4Z" fill="#cbd4e3" stroke="#91a0b9" stroke-width="1"/>
+    </g>
+    <!-- Continuous forelegs pivot gently at the shoulders, clear of the screen. -->
+    <g id="far-foreleg" class="typing">
+      <path d="M218 141Q229 145 230 158L236 178Q246 177 253 182Q259 187 252 192Q247 195 238 191L223 181Q219 177 216 166" fill="#e9b37f" stroke="#65505a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m246 184-1 4m5-2-1 3" fill="none" stroke="#c88f66" stroke-width="1.3" stroke-linecap="round"/>
+    </g>
+    <g id="near-foreleg" class="typing second">
+      <path d="M194 145Q190 167 209 189L230 201Q241 207 249 203Q256 199 250 195Q246 191 237 192L220 182Q211 163 214 149" fill="#f4c58e" stroke="#65505a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m240 196-1 4m5-3-1 4" fill="none" stroke="#cf946d" stroke-width="1.3" stroke-linecap="round"/>
+    </g>
     <!-- Coffee cup: both wisps rise from the opening of the cup. -->
     <path d="M91 178h28v19q0 9-14 9t-14-9Z" fill="#eac0a4" stroke="#7d6064" stroke-width="2.5"/>
     <ellipse cx="105" cy="178" rx="14" ry="4" fill="#805c58" stroke="#7d6064" stroke-width="2"/>
