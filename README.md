@@ -30,6 +30,13 @@
   </picture>
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/cat-waving.svg" />
+    <img src="./assets/cats/cat-waving.svg" width="200" alt="A friendly cat waving hello" />
+  </picture>
+</p>
+
 <table align="center">
   <tr>
     <td>
@@ -105,6 +112,13 @@ const cappy = {
     </td>
   </tr>
 </table>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/cat-coding.svg" />
+    <img src="./assets/cats/cat-coding.svg" width="460" alt="A cat typing code beside a warm coffee and a little plant" />
+  </picture>
+</p>
 
 <br/>
 
