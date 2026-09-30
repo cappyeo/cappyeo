@@ -3,7 +3,10 @@
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 <a href="https://github.com/cappyeo">
-  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:00d4ff,50:6366f1,100:bb86fc&height=300&section=header&text=Welcome%20to%20Cappy's%20Universe&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Full-Stack%20Developer%20%7C%20Building%20the%20future%2C%20one%20commit%20at%20a%20time&descAlignY=55&descSize=18&descColor=c9d1d9" alt="Welcome Banner" />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/universe-hero.svg" />
+    <img width="100%" src="./assets/scenes/universe-hero.svg" alt="Welcome to Cappy's Universe — a cat exploring a starry sky" />
+  </picture>
 </a>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
@@ -21,11 +24,17 @@
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 <p align="center">
-  <img src="./assets/cats/header-about.svg" width="700" alt="About Me" />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/header-about.svg" />
+    <img src="./assets/cats/header-about.svg" width="700" alt="About Me" />
+  </picture>
 </p>
 
 <p align="center">
-  <img src="./assets/cats/cat-waving.svg" width="160" alt="Cat Waving" />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/cat-waving.svg" />
+    <img src="./assets/cats/cat-waving.svg" width="200" alt="A friendly cat waving hello" />
+  </picture>
 </p>
 
 <table align="center">
@@ -59,10 +68,11 @@ const cappy = {
 <!-- ░░░░░░░░░░░░░░░░░░░░░ TECH STACK ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0d1117&height=1&section=header" width="100%" />
-
 <p align="center">
-  <img src="./assets/cats/header-tech.svg" width="700" alt="Tech Arsenal" />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/header-tech.svg" />
+    <img src="./assets/cats/header-tech.svg" width="700" alt="Tech Arsenal" />
+  </picture>
 </p>
 
 <table align="center">
@@ -103,6 +113,13 @@ const cappy = {
   </tr>
 </table>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/cat-coding.svg" />
+    <img src="./assets/cats/cat-coding.svg" width="460" alt="A cat typing code beside a warm coffee and a little plant" />
+  </picture>
+</p>
+
 <br/>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
@@ -110,7 +127,10 @@ const cappy = {
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 <p align="center">
-  <img src="./assets/cats/header-stats.svg" width="700" alt="GitHub Analytics" />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/header-stats.svg" />
+    <img src="./assets/cats/header-stats.svg" width="700" alt="GitHub Analytics" />
+  </picture>
 </p>
 
 <table align="center">
@@ -152,7 +172,10 @@ const cappy = {
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 <p align="center">
-  <img src="./assets/cats/header-3d.svg" width="700" alt="3D Contribution Graph" />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/header-3d.svg" />
+    <img src="./assets/cats/header-3d.svg" width="700" alt="3D Contribution Graph" />
+  </picture>
 </p>
 
 <p align="center">
@@ -168,7 +191,10 @@ const cappy = {
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 <p align="center">
-  <img src="./assets/cats/header-connect.svg" width="700" alt="Connect With Me" />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/header-connect.svg" />
+    <img src="./assets/cats/header-connect.svg" width="700" alt="Connect With Me" />
+  </picture>
 </p>
 
 <p align="center">
@@ -190,7 +216,10 @@ const cappy = {
 </p>
 
 <p align="center">
-  <img src="./assets/cats/cat-sleeping.svg" height="160" alt="Cat Sleeping" />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/cat-sleeping.svg" />
+    <img src="./assets/cats/cat-sleeping.svg" width="280" alt="A sleepy cat resting under the moon" />
+  </picture>
 </p>
 
 <br/>
@@ -199,4 +228,7 @@ const cappy = {
 <!-- ░░░░░░░░░░░░░░░░░░░░░░ FOOTER ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:bb86fc,50:6366f1,100:00d4ff&height=150&section=footer&text=See%20you%20around!&fontSize=20&fontColor=ffffff&fontAlignY=70&animation=fadeIn" />
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/static/night-garden.svg" />
+  <img width="100%" src="./assets/scenes/night-garden.svg" alt="See you around! A moonlit garden with drifting fireflies" />
+</picture>
