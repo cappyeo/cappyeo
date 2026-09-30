@@ -1,19 +1,190 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 90" width="700" height="90" role="img" aria-labelledby="about-title about-desc">
-  <title id="about-title">ABOUT ME</title><desc id="about-desc">A playful night garden header with a curious ginger kitten and drifting leaves.</desc>
-  <defs><linearGradient id="about-bg" x1="0" x2="1"><stop stop-color="#00d4ff"/><stop offset="1" stop-color="#bb86fc"/></linearGradient><linearGradient id="about-line"><stop stop-color="#00d4ff"/><stop offset=".5" stop-color="#7ee787"/><stop offset="1" stop-color="#bb86fc"/></linearGradient></defs>
-  <style>@keyframes about-tail{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(13deg)}}@keyframes about-leaf{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(8deg) translateY(2px)}}@keyframes about-twinkle{0%,100%{opacity:.3}50%{opacity:1}}.about-tail{animation:about-tail 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:left center}.about-leaf{animation:about-leaf 3.5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}.about-star{animation:about-twinkle 2.7s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.about-tail,.about-leaf,.about-star{animation:none}}</style>
-  <rect x="18" y="18" width="664" height="54" rx="27" fill="#161b22" stroke="url(#about-line)" stroke-width="1.5"/><rect x="24" y="24" width="652" height="42" rx="21" fill="url(#about-bg)" opacity=".12"/><path d="M40 18h100M560 72h100" stroke="url(#about-line)" opacity=".8"/><circle class="about-star" cx="52" cy="31" r="2" fill="#7ee787"/><circle class="about-star" cx="646" cy="58" r="2" fill="#bb86fc"/>
-  <g transform="translate(43 0)"><g class="about-leaf"><path d="M0 18Q-5 6 8 3Q14 14 0 18Z" fill="#7ee787"/><path d="M1 17 7 6" stroke="#7ee787" stroke-width="1"/></g></g><g transform="translate(644 0)"><g class="about-leaf"><path d="M0 72Q-6 83 8 86Q14 76 0 72Z" fill="#7ee787"/><path d="M1 73 7 84" stroke="#7ee787" stroke-width="1"/></g></g>
-  <text x="350" y="52" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="1.6">ABOUT ME</text>
-  <g transform="translate(638 54) scale(.34)">
-      <path d="M-42-15Q-47-29-40-47L-34-66Q-32-71-28-67L-11-54Q0-57 11-54L28-67Q32-71 34-66L40-47Q47-29 42-15Q38 16 0 20Q-38 16-42-15Z" fill="#f4c58e" stroke="#65505a" stroke-width="3" stroke-linejoin="round"/>
-      <path d="m-35-46 5-15 12 13q-10-2-17 2m53-2 12-13 5 15q-7-4-17-2" fill="#eeb0a0"/>
-      <path d="m-14-48 3 8M0-51v10m14-7-3 8" fill="none" stroke="#d99a67" stroke-width="3.5" stroke-linecap="round"/>
-      <ellipse cx="-26" cy="-4" rx="6" ry="3.5" fill="#eda59d" opacity=".55"/><ellipse cx="26" cy="-4" rx="6" ry="3.5" fill="#eda59d" opacity=".55"/>
-      <path d="M-15-4Q0-11 15-4Q16 10 0 13Q-16 10-15-4Z" fill="#fff0d7"/>
-      <g class="mini-eyes"><ellipse cx="-16" cy="-19" rx="4.2" ry="6" fill="#443b46"/><ellipse cx="16" cy="-19" rx="4.2" ry="6" fill="#443b46"/><circle cx="-17" cy="-21" r="1.3" fill="#fff9eb"/><circle cx="15" cy="-21" r="1.3" fill="#fff9eb"/></g>
-      <path d="M-4-7Q0-9 4-7Q4-4 0-2Q-4-4-4-7Z" fill="#b87879"/>
-      <path d="M0-2v3m0 0q-3 5-7 1m7-1q3 5 7 1" fill="none" stroke="#74555b" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="m-31-9-13-3m13 10-12 1m75-8 12-3m-12 10 12 1" fill="none" stroke="#96727a" stroke-width="1.5" stroke-linecap="round"/>
-    <ellipse cx="-22" cy="24" rx="10" ry="6" fill="#f4c58e" stroke="#65505a" stroke-width="2.5"/><ellipse cx="22" cy="24" rx="10" ry="6" fill="#f4c58e" stroke="#65505a" stroke-width="2.5"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -15 700 105" width="700" height="105">
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#bb86fc;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <style>
+        @keyframes tail-wag {
+
+            0%,
+            100% {
+                transform: rotate(0deg)
+            }
+
+            50% {
+                transform: rotate(12deg)
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            90%,
+            92%,
+            100% {
+                transform: scaleY(1)
+            }
+
+            91% {
+                transform: scaleY(0.1)
+            }
+        }
+
+        @keyframes dangle {
+
+            0%,
+            100% {
+                transform: rotate(-3deg)
+            }
+
+            50% {
+                transform: rotate(3deg)
+            }
+        }
+
+        .tail {
+            animation: tail-wag 2s ease-in-out infinite;
+            transform-origin: 640px 8px
+        }
+
+        .eyes {
+            animation: blink 4s linear infinite;
+            transform-origin: center;
+            transform-box: fill-box;
+        }
+
+        .cat-hang {
+            animation: dangle 3s ease-in-out infinite;
+            transform-origin: 660px 0px
+        }
+
+        .vine-leaf {
+            animation: leaf-sway 3s ease-in-out infinite alternate;
+            transform-box: fill-box;
+            transform-origin: left center;
+        }
+
+        @keyframes leaf-sway {
+            0% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+    </style>
+    <!-- Header bar -->
+    <rect x="30" y="20" width="640" height="40" rx="20" fill="url(#bg)" />
+    <text x="350" y="46" font-family="Segoe UI,sans-serif" font-size="16" font-weight="bold" fill="white"
+        text-anchor="middle" letter-spacing="2">ABOUT ME</text>
+
+    <!-- Vine wrapping around the header bar -->
+    <g>
+        <!--
+            Bar is at y=20..60. Vine weaves:
+            Start left → above bar (y=15) → cross down through bar → below bar (y=65) → back up above (y=15) → cross down again → below (y=65) → exit
+        -->
+        <!-- Back portion of vine (behind bar) rendered first -->
+        <path d="M 0 15
+            C 25 15, 45 15, 60 30
+            C 75 50, 85 65, 100 65
+            C 115 65, 125 65, 140 50
+            C 150 35, 155 15, 175 15
+            C 190 15, 195 15, 210 30
+            C 220 45, 225 65, 240 65" fill="none" stroke="#2ea043" stroke-width="3.5" stroke-linecap="round"
+            opacity="0.4" />
+
+        <!-- Front portion of vine (in front of bar) — same path but clipped to visible areas -->
+        <path d="M 0 15
+            C 25 15, 45 15, 60 30
+            C 75 50, 85 65, 100 65
+            C 115 65, 125 65, 140 50
+            C 150 35, 155 15, 175 15
+            C 190 15, 195 15, 210 30
+            C 220 45, 225 65, 240 65" fill="none" stroke="#2ea043" stroke-width="3.5" stroke-linecap="round" />
+
+        <!-- Small tendril at entry -->
+        <path d="M 3 15 Q 0 22 5 28" fill="none" stroke="#2ea043" stroke-width="2" stroke-linecap="round" />
+        <path d="M 240 65 Q 248 68 245 75" fill="none" stroke="#2ea043" stroke-width="2" stroke-linecap="round" />
+
+        <!-- Leaves at vine peaks/valleys, attached with stems -->
+
+        <!-- Leaf 1: top of first peak (x≈30, y≈15) — above bar -->
+        <g class="vine-leaf">
+            <line x1="30" y1="15" x2="28" y2="7" stroke="#2ea043" stroke-width="2" />
+            <path d="M 28 7 Q 18 0 26 -4 Q 36 1 28 7 Z" fill="#3fb950" />
+        </g>
+
+        <!-- Leaf 2: top of first peak (x≈50, y≈17) — above bar -->
+        <g class="vine-leaf">
+            <line x1="50" y1="17" x2="52" y2="9" stroke="#2ea043" stroke-width="2" />
+            <path d="M 52 9 Q 44 1 52 -2 Q 62 3 52 9 Z" fill="#7ee787" />
+        </g>
+
+        <!-- Leaf 3: bottom of first valley (x≈100, y≈65) — below bar -->
+        <g class="vine-leaf">
+            <line x1="100" y1="65" x2="98" y2="72" stroke="#2ea043" stroke-width="2" />
+            <path d="M 98 72 Q 88 78 96 82 Q 106 77 98 72 Z" fill="#3fb950" />
+        </g>
+
+        <!-- Leaf 4: top of second peak (x≈175, y≈15) — above bar -->
+        <g class="vine-leaf">
+            <line x1="175" y1="15" x2="173" y2="7" stroke="#2ea043" stroke-width="2" />
+            <path d="M 173 7 Q 163 0 171 -4 Q 181 1 173 7 Z" fill="#7ee787" />
+        </g>
+
+        <!-- Leaf 5: top of second peak (x≈190, y≈15) — above bar -->
+        <g class="vine-leaf">
+            <line x1="190" y1="15" x2="193" y2="8" stroke="#2ea043" stroke-width="2" />
+            <path d="M 193 8 Q 185 1 193 -2 Q 201 3 193 8 Z" fill="#3fb950" />
+        </g>
+
+        <!-- Leaf 6: bottom of second valley (x≈235, y≈65) — below bar -->
+        <g class="vine-leaf">
+            <line x1="235" y1="65" x2="237" y2="72" stroke="#2ea043" stroke-width="2" />
+            <path d="M 237 72 Q 229 78 237 82 Q 245 77 237 72 Z" fill="#7ee787" />
+        </g>
+    </g>
+
+
+    <!-- Cat sitting on top of right edge of header -->
+    <g class="cat-hang">
+        <!-- Tail — starts from the back of the body, close to it -->
+        <g class="tail">
+            <path d="M 664 14 Q 674 5, 680 12 Q 683 18, 678 15" fill="none" stroke="#f4a460" stroke-width="4"
+                stroke-linecap="round" />
+        </g>
+        <!-- Body sitting on bar -->
+        <ellipse cx="654" cy="14" rx="14" ry="12" fill="#f4a460" />
+        <ellipse cx="654" cy="16" rx="9" ry="8" fill="#ffdab9" />
+        <!-- Head on top -->
+        <circle cx="654" cy="0" r="12" fill="#f4a460" />
+        <!-- Ears pointing UP -->
+        <polygon points="644,-10 647,0 650,-8" fill="#f4a460" />
+        <polygon points="658,-8 661,0 664,-10" fill="#f4a460" />
+        <polygon points="645,-7 648,-1 649,-7" fill="#ff69b4" opacity="0.4" />
+        <polygon points="659,-7 661,-1 663,-7" fill="#ff69b4" opacity="0.4" />
+        <!-- Eyes looking forward -->
+        <g class="eyes">
+            <circle cx="649" cy="-1" r="3" fill="#66ff66" />
+            <circle cx="659" cy="-1" r="3" fill="#66ff66" />
+            <circle cx="649.5" cy="-1" r="1.5" fill="#111" />
+            <circle cx="659.5" cy="-1" r="1.5" fill="#111" />
+            <circle cx="648.8" cy="-2" r="0.6" fill="white" />
+            <circle cx="658.8" cy="-2" r="0.6" fill="white" />
+        </g>
+        <!-- Nose -->
+        <ellipse cx="654" cy="3" rx="1.8" ry="1.2" fill="#ff69b4" />
+        <!-- Front paws on bar — bigger -->
+        <ellipse cx="646" cy="22" rx="7" ry="4" fill="#f4a460" />
+        <ellipse cx="662" cy="22" rx="7" ry="4" fill="#f4a460" />
+        <!-- Paw pads -->
+        <circle cx="644" cy="23" r="1.2" fill="#ff69b4" opacity="0.3" />
+        <circle cx="648" cy="23.5" r="1" fill="#ff69b4" opacity="0.3" />
+        <circle cx="660" cy="23" r="1.2" fill="#ff69b4" opacity="0.3" />
+        <circle cx="664" cy="23.5" r="1" fill="#ff69b4" opacity="0.3" />
+    </g>
 </svg>

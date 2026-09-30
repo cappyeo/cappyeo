@@ -1,18 +1,114 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 90" width="700" height="90" role="img" aria-labelledby="three-title three-desc">
-  <title id="three-title">3D CONTRIBUTION GRAPH</title><desc id="three-desc">A dimensional contribution header with a planet orbiting a luminous cube.</desc>
-  <defs><linearGradient id="three-bg" x1="0" x2="1"><stop stop-color="#00d4ff"/><stop offset="1" stop-color="#bb86fc"/></linearGradient><linearGradient id="three-cube"><stop stop-color="#7ee787"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs>
-  <style>@keyframes three-orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes three-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}.three-orbit{animation:three-orbit 8s linear infinite;transform-origin:0 0}.three-float{animation:three-float 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}@media(prefers-reduced-motion:reduce){.three-orbit,.three-float{animation:none}}</style>
-  <rect x="18" y="18" width="664" height="54" rx="27" fill="#161b22" stroke="url(#three-bg)" stroke-width="1.5"/><path d="M42 45h105M553 45h105" stroke="#242938" stroke-width="1"/>
-  <g transform="translate(93 45)"><ellipse rx="24" ry="24" fill="none" stroke="#bb86fc" stroke-opacity=".7" transform="rotate(-18)"/><g class="three-orbit"><circle cx="24" cy="0" r="3" fill="#7ee787"/></g><g class="three-float"><path d="m-12-6 12-7 12 7v13L0 14l-12-7Z" fill="url(#three-cube)"/><path d="m-12-6 12 7 12-7M0 1v13" fill="none" stroke="#0d1117" stroke-opacity=".7"/></g></g>
-  <text x="350" y="52" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="1.6">3D CONTRIBUTION GRAPH</text><g transform="translate(638 54) scale(.34)">
-      <path d="M-42-15Q-47-29-40-47L-34-66Q-32-71-28-67L-11-54Q0-57 11-54L28-67Q32-71 34-66L40-47Q47-29 42-15Q38 16 0 20Q-38 16-42-15Z" fill="#f4c58e" stroke="#65505a" stroke-width="3" stroke-linejoin="round"/>
-      <path d="m-35-46 5-15 12 13q-10-2-17 2m53-2 12-13 5 15q-7-4-17-2" fill="#eeb0a0"/>
-      <path d="m-14-48 3 8M0-51v10m14-7-3 8" fill="none" stroke="#d99a67" stroke-width="3.5" stroke-linecap="round"/>
-      <ellipse cx="-26" cy="-4" rx="6" ry="3.5" fill="#eda59d" opacity=".55"/><ellipse cx="26" cy="-4" rx="6" ry="3.5" fill="#eda59d" opacity=".55"/>
-      <path d="M-15-4Q0-11 15-4Q16 10 0 13Q-16 10-15-4Z" fill="#fff0d7"/>
-      <g class="mini-eyes"><ellipse cx="-16" cy="-19" rx="4.2" ry="6" fill="#443b46"/><ellipse cx="16" cy="-19" rx="4.2" ry="6" fill="#443b46"/><circle cx="-17" cy="-21" r="1.3" fill="#fff9eb"/><circle cx="15" cy="-21" r="1.3" fill="#fff9eb"/></g>
-      <path d="M-4-7Q0-9 4-7Q4-4 0-2Q-4-4-4-7Z" fill="#b87879"/>
-      <path d="M0-2v3m0 0q-3 5-7 1m7-1q3 5 7 1" fill="none" stroke="#74555b" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="m-31-9-13-3m13 10-12 1m75-8 12-3m-12 10 12 1" fill="none" stroke="#96727a" stroke-width="1.5" stroke-linecap="round"/>
-    <ellipse cx="-22" cy="24" rx="10" ry="6" fill="#f4c58e" stroke="#65505a" stroke-width="2.5"/><ellipse cx="22" cy="24" rx="10" ry="6" fill="#f4c58e" stroke="#65505a" stroke-width="2.5"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 85" width="700" height="85">
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#00d4ff" />
+            <stop offset="100%" style="stop-color:#bb86fc" />
+        </linearGradient>
+    </defs>
+    <style>
+        @keyframes look-around {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            30% {
+                transform: translateX(1.5px)
+            }
+
+            70% {
+                transform: translateX(-1.5px)
+            }
+        }
+
+        @keyframes tail {
+
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+
+            50% {
+                transform: rotate(-12deg)
+            }
+        }
+
+        .pupils {
+            animation: look-around 3s ease-in-out infinite
+        }
+
+        .tail {
+            animation: tail 2.5s ease-in-out infinite;
+            transform-origin: 365px 12px
+        }
+
+        .vine-sway {
+            animation: sway 5s ease-in-out infinite alternate;
+            transform-origin: top left;
+            transform-box: fill-box;
+        }
+
+        .bush-sway {
+            animation: sway 4s ease-in-out infinite alternate;
+            transform-origin: bottom center;
+            transform-box: fill-box;
+        }
+
+        @keyframes sway {
+            0% {
+                transform: rotate(-2deg);
+            }
+
+            100% {
+                transform: rotate(2deg);
+            }
+        }
+    </style>
+    <rect x="30" y="20" width="640" height="40" rx="20" fill="url(#bg)" />
+    <text x="350" y="46" font-family="Segoe UI,sans-serif" font-size="16" font-weight="bold" fill="white"
+        text-anchor="middle" letter-spacing="2">3D CONTRIBUTION GRAPH</text>
+    <!-- Two small cats sitting on top, center -->
+    <!-- Cat 1 - small orange -->
+    <g transform="translate(310, 0)">
+        <ellipse cx="0" cy="14" rx="8" ry="7" fill="#f4a460" />
+        <circle cx="0" cy="6" r="6" fill="#f4a460" />
+        <polygon points="-5,2 -4,-3 -2,1" fill="#f4a460" />
+        <polygon points="2,1 4,-3 5,2" fill="#f4a460" />
+        <polygon points="-4,1.5 -4,-1.5 -2.5,1.5" fill="#ff69b4" opacity="0.35" />
+        <polygon points="2.5,1.5 4,-1.5 4,1.5" fill="#ff69b4" opacity="0.35" />
+        <circle cx="-2" cy="5" r="1.5" fill="#228B22" />
+        <circle cx="2" cy="5" r="1.5" fill="#228B22" />
+        <g class="pupils">
+            <circle cx="-1.8" cy="5" r="0.8" fill="#111" />
+            <circle cx="2.2" cy="5" r="0.8" fill="#111" />
+        </g>
+        <ellipse cx="0" cy="7.5" rx="1" ry="0.6" fill="#ff69b4" />
+        <ellipse cx="-5" cy="20" rx="3" ry="2" fill="#f4a460" />
+        <ellipse cx="5" cy="20" rx="3" ry="2" fill="#f4a460" />
+    </g>
+    <!-- Cat 2 - small gray -->
+    <g transform="translate(390, 0)">
+
+        <ellipse cx="0" cy="14" rx="8" ry="7" fill="#696969" />
+        <circle cx="0" cy="6" r="6" fill="#696969" />
+        <polygon points="-5,2 -4,-3 -2,1" fill="#696969" />
+        <polygon points="2,1 4,-3 5,2" fill="#696969" />
+        <circle cx="-2" cy="5" r="1.5" fill="#ffd700" />
+        <circle cx="2" cy="5" r="1.5" fill="#ffd700" />
+        <g class="pupils">
+            <circle cx="-1.8" cy="5" r="0.8" fill="#111" />
+            <circle cx="2.2" cy="5" r="0.8" fill="#111" />
+        </g>
+        <ellipse cx="0" cy="7.5" rx="1" ry="0.6" fill="#ff69b4" />
+        <ellipse cx="-5" cy="20" rx="3" ry="2" fill="#696969" />
+        <ellipse cx="5" cy="20" rx="3" ry="2" fill="#696969" />
+        <ellipse cx="5" cy="20" rx="3" ry="2" fill="#696969" />
+    </g>
+    <!-- Small heart between them -->
+    <text x="347" y="8" font-size="8">❤️</text>
+
+
+
+
 </svg>

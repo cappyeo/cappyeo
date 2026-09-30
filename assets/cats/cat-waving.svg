@@ -1,40 +1,159 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="240" height="200" viewBox="0 0 240 200" role="img" aria-labelledby="title desc">
-  <title id="title">A little hello from Cappy</title>
-  <desc id="desc">A round ginger kitten sits comfortably and gives two small waves with a short front paw.</desc>
-  <style>
-    @keyframes blink { 0%,42%,46%,100% { transform:scaleY(1) } 44% { transform:scaleY(.08) } }
-    .blink { animation:blink 6s linear infinite; transform-box:fill-box; transform-origin:center }
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+    <style>
+        .cat {
+            fill: #808080;
+        }
 
-    @keyframes wave { 0%,12%,62%,100% { transform:rotate(0deg) } 24%,48% { transform:rotate(10deg) } 36% { transform:rotate(-7deg) } }
-    @keyframes swish { 0%,65%,100% { transform:rotate(0deg) } 78% { transform:rotate(-5deg) } 90% { transform:rotate(3deg) } }
-    @keyframes sparkle { 0%,100% { opacity:.4; transform:scale(.85) } 50% { opacity:.9; transform:scale(1) } }
-    .paw { animation:wave 5.5s ease-in-out infinite; transform-origin:142px 132px }
-    .tail { animation:swish 7s ease-in-out infinite; transform-origin:86px 146px }
-    .sparkle { animation:sparkle 5s ease-in-out infinite; transform-box:fill-box; transform-origin:center }
+        .cat-light {
+            fill: #a9a9a9;
+        }
 
-    @media (prefers-reduced-motion:reduce) { * { animation:none !important } }
-  </style>
+        .eye {
+            fill: #ffd700;
+        }
 
-    <ellipse cx="114" cy="177" rx="75" ry="8" fill="#77849e" opacity=".14"/>
-    <g class="tail"><path d="M86 146C61 150 49 137 55 122Q61 111 69 121" fill="none" stroke="#65505a" stroke-width="20" stroke-linecap="round"/><path d="M86 146C61 150 49 137 55 122Q61 111 69 121" fill="none" stroke="#e7a872" stroke-width="14" stroke-linecap="round"/></g>
-    <path d="M87 94Q76 117 83 153Q88 172 113 172Q142 172 147 153Q152 117 139 94Z" fill="#f4c58e" stroke="#65505a" stroke-width="3"/>
-    <ellipse cx="115" cy="142" rx="23" ry="25" fill="#fff0d7"/>
-    <ellipse cx="91" cy="170" rx="15" ry="8" fill="#f4c58e" stroke="#65505a" stroke-width="3"/><ellipse cx="136" cy="170" rx="15" ry="8" fill="#f4c58e" stroke="#65505a" stroke-width="3"/>
-    <path d="M89 167v5m6-5v5m37-5v5m6-5v5" stroke="#ce966e" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M95 124Q91 142 98 154Q103 159 108 153L107 130" fill="#f4c58e" stroke="#65505a" stroke-width="3" stroke-linecap="round"/>
-    <g class="paw"><path d="M133 126Q144 132 149 117L154 101Q157 91 165 92Q174 94 171 105L165 126Q157 147 141 143" fill="#f4c58e" stroke="#65505a" stroke-width="3" stroke-linecap="round"/><ellipse cx="163" cy="105" rx="4.5" ry="5.5" fill="#d8908f"/><circle cx="158" cy="98" r="2" fill="#d8908f"/><circle cx="164" cy="96" r="2" fill="#d8908f"/><circle cx="169" cy="100" r="2" fill="#d8908f"/></g>
-    <g transform="translate(112 89)">
-      <path d="M-42-15Q-47-29-40-47L-34-66Q-32-71-28-67L-11-54Q0-57 11-54L28-67Q32-71 34-66L40-47Q47-29 42-15Q38 16 0 20Q-38 16-42-15Z" fill="#f4c58e" stroke="#65505a" stroke-width="3" stroke-linejoin="round"/>
-      <path d="m-35-46 5-15 12 13q-10-2-17 2m53-2 12-13 5 15q-7-4-17-2" fill="#eeb0a0"/>
-      <path d="m-14-48 3 8M0-51v10m14-7-3 8" fill="none" stroke="#d99a67" stroke-width="3.5" stroke-linecap="round"/>
-      <ellipse cx="-26" cy="-4" rx="6" ry="3.5" fill="#eda59d" opacity=".55"/><ellipse cx="26" cy="-4" rx="6" ry="3.5" fill="#eda59d" opacity=".55"/>
-      <path d="M-15-4Q0-11 15-4Q16 10 0 13Q-16 10-15-4Z" fill="#fff0d7"/>
-      <g class="blink"><ellipse cx="-16" cy="-19" rx="4.2" ry="6" fill="#443b46"/><ellipse cx="16" cy="-19" rx="4.2" ry="6" fill="#443b46"/><circle cx="-17" cy="-21" r="1.3" fill="#fff9eb"/><circle cx="15" cy="-21" r="1.3" fill="#fff9eb"/></g>
-      <path d="M-4-7Q0-9 4-7Q4-4 0-2Q-4-4-4-7Z" fill="#b87879"/>
-      <path d="M0-2v3m0 0q-3 5-7 1m7-1q3 5 7 1" fill="none" stroke="#74555b" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="m-31-9-13-3m13 10-12 1m75-8 12-3m-12 10 12 1" fill="none" stroke="#96727a" stroke-width="1.5" stroke-linecap="round"/>
+        .nose {
+            fill: #ff69b4;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-30deg);
+            }
+
+            50% {
+                transform: rotate(10deg);
+            }
+
+            75% {
+                transform: rotate(-25deg);
+            }
+        }
+
+        @keyframes tail-happy {
+
+            0%,
+            100% {
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                transform: rotate(20deg);
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            90%,
+            92%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            91% {
+                transform: scaleY(0.05);
+            }
+        }
+
+        .wave-paw {
+            animation: wave 1.2s ease-in-out infinite;
+            transform-origin: 85px 70px;
+        }
+
+        .tail {
+            animation: tail-happy 1.5s ease-in-out infinite;
+            transform-origin: 55px 65px;
+        }
+
+        .eyes {
+            animation: blink 3.5s linear infinite;
+            transform-origin: center;
+            transform-box: fill-box;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle1 {
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        .sparkle2 {
+            animation: sparkle 1.5s ease-in-out 0.5s infinite;
+        }
+
+        .sparkle3 {
+            animation: sparkle 1.5s ease-in-out 1s infinite;
+        }
+    </style>
+    <!-- Sparkles -->
+    <text x="120" y="25" font-size="14" class="sparkle1">✨</text>
+    <text x="140" y="40" font-size="10" class="sparkle2">✨</text>
+    <text x="105" y="35" font-size="12" class="sparkle3">⭐</text>
+    <!-- Tail -->
+    <g class="tail">
+        <path d="M 55 65 Q 30 45, 25 60 Q 22 70, 28 65" fill="none" stroke="#808080" stroke-width="7"
+            stroke-linecap="round" />
     </g>
-    <g class="sparkle" fill="#bfa4f3"><path d="m194 62 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z"/></g>
-    <g class="sparkle" fill="#79dce9" style="animation-delay:-2s"><path d="m48 70 1.5 4.5L54 76l-4.5 1.5L48 82l-1.5-4.5L42 76l4.5-1.5Z"/></g>
-
+    <!-- Body sitting -->
+    <ellipse cx="80" cy="80" rx="30" ry="28" class="cat" />
+    <ellipse cx="80" cy="85" rx="20" ry="16" class="cat-light" />
+    <!-- Back paws -->
+    <ellipse cx="58" cy="100" rx="9" ry="5" class="cat" />
+    <ellipse cx="100" cy="100" rx="9" ry="5" class="cat" />
+    <!-- Head -->
+    <circle cx="80" cy="48" r="22" class="cat" />
+    <!-- Ears -->
+    <polygon points="62,32 66,12 74,30" class="cat" />
+    <polygon points="86,30 94,12 98,32" class="cat" />
+    <polygon points="65,30 67,16 72,30" fill="#ff69b4" opacity="0.4" />
+    <polygon points="88,30 93,16 96,30" fill="#ff69b4" opacity="0.4" />
+    <!-- Eyes happy/friendly -->
+    <g class="eyes">
+        <circle cx="72" cy="46" r="4.5" class="eye" />
+        <circle cx="88" cy="46" r="4.5" class="eye" />
+        <circle cx="72" cy="46" r="2.5" fill="#111" />
+        <circle cx="88" cy="46" r="2.5" fill="#111" />
+        <circle cx="71" cy="44.5" r="1" fill="white" />
+        <circle cx="87" cy="44.5" r="1" fill="white" />
+    </g>
+    <!-- Nose -->
+    <ellipse cx="80" cy="53" rx="2.5" ry="2" class="nose" />
+    <!-- Smile -->
+    <path d="M 80 55 Q 76 59, 73 57" fill="none" stroke="#555" stroke-width="1" stroke-linecap="round" />
+    <path d="M 80 55 Q 84 59, 87 57" fill="none" stroke="#555" stroke-width="1" stroke-linecap="round" />
+    <!-- Whiskers -->
+    <line x1="55" y1="52" x2="68" y2="52" fill="none" stroke="#bbb" stroke-width="0.7" />
+    <line x1="56" y1="56" x2="68" y2="54" fill="none" stroke="#bbb" stroke-width="0.7" />
+    <line x1="92" y1="52" x2="105" y2="52" fill="none" stroke="#bbb" stroke-width="0.7" />
+    <line x1="92" y1="54" x2="104" y2="56" fill="none" stroke="#bbb" stroke-width="0.7" />
+    <!-- Waving paw -->
+    <g class="wave-paw">
+        <path d="M 85 70 Q 100 55, 115 45" fill="none" stroke="#808080" stroke-width="8" stroke-linecap="round" />
+        <ellipse cx="117" cy="42" rx="5" ry="4" class="cat" />
+        <!-- Paw pads -->
+        <circle cx="115" cy="42" r="1.5" fill="#ff69b4" opacity="0.5" />
+        <circle cx="118" cy="40" r="1.2" fill="#ff69b4" opacity="0.5" />
+        <circle cx="120" cy="42" r="1.2" fill="#ff69b4" opacity="0.5" />
+    </g>
+    <!-- Other paw resting -->
+    <ellipse cx="68" cy="98" rx="7" ry="4" class="cat" />
 </svg>

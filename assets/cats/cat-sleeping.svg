@@ -1,42 +1,143 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="175" viewBox="0 0 300 175" role="img" aria-labelledby="title desc">
-  <title id="title">Cappy taking a little break</title>
-  <desc id="desc">The same ginger kitten curls up on a soft cushion with its head on its paws, breathing slowly under a crescent moon.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100">
   <style>
-    @keyframes blink { 0%,42%,46%,100% { transform:scaleY(1) } 44% { transform:scaleY(.08) } }
-    .blink { animation:blink 6s linear infinite; transform-box:fill-box; transform-origin:center }
+    .body {
+      fill: #f4a460;
+    }
 
-    @keyframes breathe { 0%,100% { transform:scaleY(1) } 50% { transform:scaleY(1.018) } }
-    @keyframes dream { 0%,100% { opacity:0; transform:translate(0,5px) } 25%,60% { opacity:.7 } 90% { opacity:0; transform:translate(5px,-12px) } }
-    .breathe { animation:breathe 4.8s ease-in-out infinite; transform-origin:152px 144px }
-    .dream { animation:dream 6s ease-out infinite }
+    .belly {
+      fill: #ffdab9;
+    }
 
-    @media (prefers-reduced-motion:reduce) { * { animation:none !important } }
+    .stripe {
+      fill: #d2691e;
+    }
+
+    .nose {
+      fill: #ff69b4;
+    }
+
+    .eye-closed {
+      fill: none;
+      stroke: #333;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+    }
+
+    .whisker {
+      fill: none;
+      stroke: #333;
+      stroke-width: 0.8;
+    }
+
+    .zzz {
+      fill: #bb86fc;
+      font-family: sans-serif;
+      font-weight: bold;
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: scaleY(1);
+      }
+
+      50% {
+        transform: scaleY(0.95);
+      }
+    }
+
+    @keyframes float-z {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.5);
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(10px, -20px) scale(1.2);
+      }
+    }
+
+    .cat-body {
+      animation: breathe 3s ease-in-out infinite;
+      transform-origin: center bottom;
+      transform-box: fill-box;
+    }
+
+    .z1 {
+      animation: float-z 2s ease-out infinite;
+    }
+
+    .z2 {
+      animation: float-z 2s ease-out 0.6s infinite;
+    }
+
+    .z3 {
+      animation: float-z 2s ease-out 1.2s infinite;
+    }
+
+    @keyframes tail-slow {
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      50% {
+        transform: rotate(5deg);
+      }
+    }
+
+    .tail {
+      animation: tail-slow 4s ease-in-out infinite;
+      transform-origin: 45px 65px;
+    }
   </style>
-
-    <ellipse cx="151" cy="153" rx="103" ry="15" fill="#34415b" stroke="#6d7b98" stroke-width="2"/>
-    <path d="M62 153Q149 170 240 153" fill="none" stroke="#536180" stroke-width="2"/>
-    <g class="breathe">
-      <ellipse cx="157" cy="112" rx="62" ry="38" fill="#f4c58e" stroke="#65505a" stroke-width="3"/>
-      <path d="M157 80q-4 7-1 12m16-9q-4 7-1 13m16-9q-4 7-1 12" fill="none" stroke="#d99a67" stroke-width="4" stroke-linecap="round"/>
-      <ellipse cx="103" cy="137" rx="18" ry="9" fill="#fff0d7" stroke="#65505a" stroke-width="2.5"/>
-      <ellipse cx="130" cy="141" rx="17" ry="8" fill="#fff0d7" stroke="#65505a" stroke-width="2.5"/>
-      <path d="M210 112C235 143 193 163 163 142" fill="none" stroke="#65505a" stroke-width="21" stroke-linecap="round"/>
-      <path d="M210 112C235 143 193 163 163 142" fill="none" stroke="#e7a872" stroke-width="15" stroke-linecap="round"/>
-      <g transform="translate(111 118) rotate(-12) scale(.74)">
-      <path d="M-42-15Q-47-29-40-47L-34-66Q-32-71-28-67L-11-54Q0-57 11-54L28-67Q32-71 34-66L40-47Q47-29 42-15Q38 16 0 20Q-38 16-42-15Z" fill="#f4c58e" stroke="#65505a" stroke-width="3" stroke-linejoin="round"/>
-      <path d="m-35-46 5-15 12 13q-10-2-17 2m53-2 12-13 5 15q-7-4-17-2" fill="#eeb0a0"/>
-      <path d="m-14-48 3 8M0-51v10m14-7-3 8" fill="none" stroke="#d99a67" stroke-width="3.5" stroke-linecap="round"/>
-      <ellipse cx="-26" cy="-4" rx="6" ry="3.5" fill="#eda59d" opacity=".55"/><ellipse cx="26" cy="-4" rx="6" ry="3.5" fill="#eda59d" opacity=".55"/>
-      <path d="M-15-4Q0-11 15-4Q16 10 0 13Q-16 10-15-4Z" fill="#fff0d7"/>
-      <path d="M-24-18Q-16-24-8-18M8-18Q16-24 24-18" fill="none" stroke="#59454b" stroke-width="2.8" stroke-linecap="round"/>
-      <path d="M-4-7Q0-9 4-7Q4-4 0-2Q-4-4-4-7Z" fill="#b87879"/>
-      <path d="M0-2v3m0 0q-3 5-7 1m7-1q3 5 7 1" fill="none" stroke="#74555b" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="m-31-9-13-3m13 10-12 1m75-8 12-3m-12 10 12 1" fill="none" stroke="#96727a" stroke-width="1.5" stroke-linecap="round"/>
-    </g>
-    </g>
-    <path d="M250 31A17 17 0 1 0 262 56A19 19 0 0 1 250 31Z" fill="#e7d2aa" stroke="#bba5b7" stroke-width="1"/>
-    <g class="dream" fill="none" stroke="#baa1ef" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M197 66h10l-10 10h10"/></g>
-    <g class="dream" style="animation-delay:-2s" fill="none" stroke="#95cfdb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M220 47h8l-8 8h8"/></g>
-    <circle cx="265" cy="90" r="2" fill="#9ed9df"/><path d="m73 45 1.5 4.5L79 51l-4.5 1.5L73 57l-1.5-4.5L67 51l4.5-1.5Z" fill="#baa1ef"/>
-
+  <!-- Tail -->
+  <g class="tail">
+    <path d="M 45 65 Q 20 55, 15 40 Q 12 30, 20 28" fill="none" stroke="#f4a460" stroke-width="8"
+      stroke-linecap="round" />
+    <path d="M 20 28 Q 22 26, 24 27" fill="none" stroke="#d2691e" stroke-width="8" stroke-linecap="round" />
+  </g>
+  <!-- Body -->
+  <g class="cat-body">
+    <ellipse cx="100" cy="70" rx="50" ry="25" class="body" />
+    <ellipse cx="100" cy="73" rx="35" ry="15" class="belly" />
+    <!-- Stripes -->
+    <path d="M 80 50 Q 82 55, 78 58" class="stripe" fill="none" stroke="#d2691e" stroke-width="2" />
+    <path d="M 90 48 Q 92 53, 88 56" class="stripe" fill="none" stroke="#d2691e" stroke-width="2" />
+    <path d="M 110 48 Q 112 53, 108 56" class="stripe" fill="none" stroke="#d2691e" stroke-width="2" />
+    <!-- Head -->
+    <circle cx="140" cy="58" r="18" class="body" />
+    <!-- Ears -->
+    <polygon points="128,45 133,30 138,45" class="body" />
+    <polygon points="142,45 147,30 152,45" class="body" />
+    <polygon points="130,44 133,34 136,44" fill="#ff69b4" opacity="0.5" />
+    <polygon points="144,44 147,34 150,44" fill="#ff69b4" opacity="0.5" />
+    <!-- Closed eyes -->
+    <path d="M 133 56 Q 136 53, 139 56" class="eye-closed" />
+    <path d="M 143 56 Q 146 53, 149 56" class="eye-closed" />
+    <!-- Nose -->
+    <ellipse cx="141" cy="60" rx="2" ry="1.5" class="nose" />
+    <!-- Mouth -->
+    <path d="M 141 61.5 Q 139 64, 137 63" fill="none" stroke="#333" stroke-width="0.8" />
+    <path d="M 141 61.5 Q 143 64, 145 63" fill="none" stroke="#333" stroke-width="0.8" />
+    <!-- Whiskers -->
+    <line x1="120" y1="58" x2="133" y2="59" class="whisker" />
+    <line x1="121" y1="62" x2="133" y2="61" class="whisker" />
+    <line x1="149" y1="59" x2="162" y2="58" class="whisker" />
+    <line x1="149" y1="61" x2="162" y2="62" class="whisker" />
+    <!-- Paws tucked -->
+    <ellipse cx="130" cy="85" rx="8" ry="5" class="body" />
+    <ellipse cx="110" cy="87" rx="7" ry="4" class="belly" />
+  </g>
+  <!-- Zzz -->
+  <text x="155" y="40" font-size="12" class="zzz z1">z</text>
+  <text x="163" y="30" font-size="14" class="zzz z2">z</text>
+  <text x="172" y="18" font-size="16" class="zzz z3">Z</text>
 </svg>
