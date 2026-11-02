@@ -9,7 +9,7 @@
         aria-labelledby="descId"
       >
         <title id="titleId">Cappy&#39;s GitHub Stats, Rank: A+</title>
-        <desc id="descId">Total Stars Earned: 216, Total Commits  : 10295, Total PRs: 225, Total Issues: 157, Contributed to (last year): 62</desc>
+        <desc id="descId">Total Stars Earned: 216, Total Commits  : 10347, Total PRs: 226, Total Issues: 158, Contributed to (last year): 62</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -73,7 +73,7 @@
         stroke-dashoffset: 251.32741228718345;
       }
       to {
-        stroke-dashoffset: 28.616015025340257;
+        stroke-dashoffset: 28.56923559943997;
       }
     }
   
@@ -199,7 +199,7 @@
         x="224.01"
         y="12.5"
         data-testid="prs"
-      >225</text>
+      >226</text>
     </g>
   </g><g transform="translate(0, 75)">
     <g class="stagger" style="animation-delay: 900ms" transform="translate(25, 0)">
@@ -214,7 +214,7 @@
         x="224.01"
         y="12.5"
         data-testid="issues"
-      >157</text>
+      >158</text>
     </g>
   </g><g transform="translate(0, 100)">
     <g class="stagger" style="animation-delay: 1050ms" transform="translate(25, 0)">
